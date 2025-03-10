@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void delete(int *a, int *size, int target){
+    for(int i=0; i<*size; ){
+        if(a[i]== target){
+            for(int j=i; j<*size-1; j++){
+                a[j] = a[j+1];
+            }
+            *size = *size - 1;
+        }
+        else
+            i++;
+    }
+}
+int main() {
+    int n;
+    scanf("%d",&n);
+    int arr[n];
+    for(int i=0; i<n; i++){
+        scanf("%d",&arr[i]);
+    }
+    int target;
+    scanf("%d",&target);
+    delete(arr ,&n,target);
+    for(int i=0; i<n; i++){
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
