@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define SIZE 100
+void findNextGreaterElement(int nums[], int N) {
+    int result[N];
+    for (int i = 0; i < N; i++) {
+        result[i] = -1;
+    }
+    int stack[SIZE], top = -1;
+    for (int i = 0; i < 2 * N; i++) {
+        int currentIndex = i % N;
+        while (top != -1 && nums[stack[top]] < nums[currentIndex]) {
+            int index = stack[top--];
+            result[index] = nums[currentIndex];
+        }
+        if (i < N) {
+            stack[++top] = currentIndex;
+        }
+    }
+    for (int i = 0; i < N; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+}
+int main(){    
+    int N;
+    scanf("%d", &N);
+    int nums[N];
+    for (int i = 0; i < N; i++){
+        scanf("%d", &nums[i]);
+    }
+    findNextGreaterElement(nums, N);  
+    return 0;
+}
